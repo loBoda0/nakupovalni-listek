@@ -57,7 +57,6 @@ export const updateItem = async(id: string, data: UpdateItem) => {
   })
   revalidatePath('/')
   if (updated.ok) {
-    console.log('It works')
     return { success: true }
   } else {
     console.log('It doesnt work')

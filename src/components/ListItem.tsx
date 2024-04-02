@@ -15,7 +15,6 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [itemName, setItemName] = useState(item.name)
   const [isChecked, setIsChecked] = useState(item.bought)
-  const [isEdit, setIsEdit] = useState(false)
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked)
@@ -26,12 +25,10 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
   }
 
   const handleEdit = () => {
-    setIsEdit(!isEdit)
-    if (inputRef.current && !isEdit) {
-      console.log(inputRef.current)
-      inputRef.current.focus();
-      console.log(inputRef.current)
+    const updatedValue = {
+      name: itemName
     }
+    updateItem(item.id, updatedValue)
   }
 
   const handleDelete = async () => {
@@ -53,10 +50,13 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
           placeholder="Enter item name"
+          disabled={isChecked}
         />
       </div>
       <div className="flex gap-2">
-        <CiEdit  color='blue' size={24} onClick={handleEdit} />
+        <button onClick={handleEdit} disabled={item.name === itemName || isChecked}>
+          <CiEdit  color='blue' size={24} />
+        </button>
         <FaRegTrashAlt color='red' size={24} onClick={handleDelete} />
       </div>
     </div>
