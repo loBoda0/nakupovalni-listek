@@ -1,16 +1,25 @@
 'use client'
 
-import React, { FormEventHandler, useState } from 'react'
-import { GoPlusCircle } from "react-icons/go";
+import { postItem } from '@/actions/items'
+import React, { useState } from 'react'
+import { GoPlusCircle } from "react-icons/go"
 
 const AddItem = () => {
   const [itemName, setItemName] = useState('')
 
-  const submitItem = () => {
-    console.log(itemName);
-    if (itemName.length == 0) {
-      alert('Cant add empty item')
+  const submitItem = async () => {
+    if (!itemName.trim()) {
+      alert('Cannot add an empty item');
+      return;
     }
+
+    const newItem = {
+      name: itemName,
+      bought: false
+    }
+
+    const data = await postItem(newItem)
+    console.log('data: ', data)
     setItemName('')
   }
 
