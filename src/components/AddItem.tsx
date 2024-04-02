@@ -18,8 +18,7 @@ const AddItem = () => {
       bought: false
     }
 
-    const data = await postItem(newItem)
-    console.log('data: ', data)
+    postItem(newItem)
     setItemName('')
   }
 

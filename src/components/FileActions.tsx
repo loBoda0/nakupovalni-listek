@@ -6,9 +6,7 @@ import { MdFileUpload, MdFileDownload } from "react-icons/md";
 
 const FileActions = () => {
   const exportData = async () => {
-    console.log('object')
     const data = await getItems()
-    console.log(data)
     const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
       JSON.stringify(data)
     )}`;

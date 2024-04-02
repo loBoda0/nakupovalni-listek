@@ -6,11 +6,6 @@
       "bought": false
     },
     {
-      "id": "e161",
-      "name": "Kava",
-      "bought": false
-    },
-    {
       "id": "484d",
       "name": "Salama",
       "bought": false
@@ -18,6 +13,11 @@
     {
       "id": "9026",
       "name": "Makaroni",
+      "bought": false
+    },
+    {
+      "id": "4932",
+      "name": "Špageti",
       "bought": false
     }
   ]
