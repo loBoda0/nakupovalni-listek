@@ -4,7 +4,8 @@ import { ShopItem } from '@/schemas/ShopItem'
 import React, { useRef, useState } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { CiEdit } from "react-icons/ci"
-import { deleteItem } from '@/actions/items'
+import { deleteItem, updateItem } from '@/actions/items'
+import { cn } from '@/utils/cn'
 
 interface ListItemProps {
   item: ShopItem
@@ -18,6 +19,10 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked)
+    const updatedValue = {
+      bought: !isChecked
+    }
+    updateItem(item.id, updatedValue)
   }
 
   const handleEdit = () => {
@@ -42,7 +47,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
         <input type="checkbox" name="isChecked" id={item.name} checked={isChecked} onChange={toggleCheckbox} />
         <input
           type="text"
-          className="w-full"
+          className={cn('w-full', isChecked && 'line-through text-gray-500')}
           name="itemName"
           id="name"
           value={itemName}

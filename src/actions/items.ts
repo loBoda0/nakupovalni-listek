@@ -8,6 +8,11 @@ interface NewItem {
   bought: boolean
 }
 
+interface UpdateItem {
+  name?: string,
+  bought?: boolean
+}
+
 export const getItems = async() => {
   const response = await fetch('http://localhost:3001/items', {  cache: 'no-cache' })
   const data = await response.json()
@@ -38,6 +43,24 @@ export const deleteItem = async(id: string) => {
     revalidatePath('/')
     return { success: true }
   } else {
+    return { success: false }
+  }
+}
+
+export const updateItem = async(id: string, data: UpdateItem) => {
+  const updated = await fetch(`http://localhost:3001/items/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  revalidatePath('/')
+  if (updated.ok) {
+    console.log('It works')
+    return { success: true }
+  } else {
+    console.log('It doesnt work')
     return { success: false }
   }
 }
