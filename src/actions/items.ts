@@ -1,20 +1,16 @@
 'use server'
 
-import { ShopItemsSchema, ShopItemSchema } from "@/schemas/ShopItem"
+import { ShopItemsSchema, ShopItemSchema, NewItem, UpdateItem } from "@/schemas/ShopItem"
 import { revalidatePath } from "next/cache"
-
-interface NewItem {
-  name: string,
-  bought: boolean
-}
-
-interface UpdateItem {
-  name?: string,
-  bought?: boolean
-}
 
 export const getItems = async() => {
   const response = await fetch('http://localhost:3001/items', {  cache: 'no-cache' })
+  const data = await response.json()
+  return await ShopItemsSchema.parseAsync(data)
+}
+
+export const getItemByName = async(name: string) => {
+  const response = await fetch(`http://localhost:3001/items?name=${name}`, {  cache: 'no-cache' })
   const data = await response.json()
   return await ShopItemsSchema.parseAsync(data)
 }
@@ -61,4 +57,23 @@ export const updateItem = async(id: string, data: UpdateItem) => {
   } else {
     return { success: false }
   }
+}
+
+export const importData = async(items: NewItem[]) => {
+  for (const item of items) {
+    const data = await getItemByName(item.name)
+    const retreivedItem = data[0]
+    if (!retreivedItem) {
+      await postItem(item)
+      continue
+    }
+    if (retreivedItem.bought !== item.bought) {
+      const boughtUpdate = {
+        ...retreivedItem,
+        bought: item.bought
+      }
+      await updateItem(retreivedItem.id, boughtUpdate)
+    }
+  }
+  revalidatePath('/')
 }

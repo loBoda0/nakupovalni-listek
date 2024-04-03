@@ -19,7 +19,8 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
   useEffect(() => {
     setInitialItemName(item.name)
-  }, [item.name])
+    setIsChecked(item.bought)
+  }, [item.name, item.bought])
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked)
