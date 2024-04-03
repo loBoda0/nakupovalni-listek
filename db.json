@@ -9,6 +9,11 @@
       "id": "0a7b",
       "name": "krompir",
       "bought": false
+    },
+    {
+      "id": "3f5f",
+      "name": "burek",
+      "bought": true
     }
   ]
 }
