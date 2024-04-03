@@ -59,7 +59,6 @@ export const updateItem = async(id: string, data: UpdateItem) => {
   if (updated.ok) {
     return { success: true }
   } else {
-    console.log('It doesnt work')
     return { success: false }
   }
 }

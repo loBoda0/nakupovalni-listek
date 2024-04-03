@@ -1,23 +1,13 @@
 {
   "items": [
     {
-      "id": "c8a5",
-      "name": "Pašteta",
+      "id": "faa3",
+      "name": "mlekomat",
       "bought": false
     },
     {
-      "id": "484d",
-      "name": "Salama",
-      "bought": true
-    },
-    {
-      "id": "9026",
-      "name": "Makaroni",
-      "bought": false
-    },
-    {
-      "id": "4932",
-      "name": "Špageti",
+      "id": "ee8d",
+      "name": "kakav",
       "bought": false
     }
   ]

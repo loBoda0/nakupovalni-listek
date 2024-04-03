@@ -1,10 +1,11 @@
 'use client'
 
 import { ShopItem } from '@/schemas/ShopItem'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { CiEdit } from "react-icons/ci"
 import { deleteItem, updateItem } from '@/actions/items'
+import { IoMdClose } from "react-icons/io"
 import { cn } from '@/utils/cn'
 
 interface ListItemProps {
@@ -12,9 +13,13 @@ interface ListItemProps {
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const [itemName, setItemName] = useState(item.name)
   const [isChecked, setIsChecked] = useState(item.bought)
+  const [initialItemName, setInitialItemName] = useState(item.name)
+
+  useEffect(() => {
+    setInitialItemName(item.name)
+  }, [item.name])
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked)
@@ -38,6 +43,10 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
     }
   }
 
+  const cancelEdit = () => {
+    setItemName(initialItemName)
+  }
+
   return (
     <div className='flex justify-between m-2'>
       <div className="flex gap-2">
@@ -54,8 +63,11 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
         />
       </div>
       <div className="flex gap-2">
+        <button onClick={cancelEdit} hidden={item.name === itemName || isChecked}>
+          <IoMdClose color='red' size={24} />
+        </button>
         <button onClick={handleEdit} disabled={item.name === itemName || isChecked}>
-          <CiEdit  color='blue' size={24} />
+          <CiEdit color={item.name === itemName || isChecked ? 'gray' : 'blue'} size={24} />
         </button>
         <FaRegTrashAlt color='red' size={24} onClick={handleDelete} />
       </div>
