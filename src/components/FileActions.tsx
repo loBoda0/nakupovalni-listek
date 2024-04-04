@@ -1,11 +1,15 @@
 'use client'
 
-import { getItems, importData } from '@/actions/items'
+import { deleteAll, getItems, importData } from '@/actions/items'
 import { NewItemSchema, ShopItem } from '@/schemas/ShopItem'
 import React from 'react'
 import { MdFileUpload, MdFileDownload } from "react-icons/md"
 
 const FileActions = () => {
+  const deleteAllItems = async() => {
+    await deleteAll()
+  }
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     const reader = new FileReader()
@@ -54,11 +58,12 @@ const FileActions = () => {
   }
 
   return (
-    <div className='flex h-48'>
-      <div className='w-1/2 flex items-center justify-center border-dashed border-2 m-1' onClick={exportData}>
+    <div className='flex h-12'>
+      <button className="w-1/3 flex items-center justify-center" onClick={deleteAllItems}>Delete all</button>
+      <div className='w-1/3 flex items-center justify-center border-dashed border-2 m-1' onClick={exportData}>
         <MdFileDownload size={48} />
       </div>
-      <label className='w-1/2 flex items-center justify-center border-dashed border-2 m-1'>
+      <label className='w-1/3 flex items-center justify-center border-dashed border-2 m-1'>
         <input 
           type='file' 
           accept='.json' 

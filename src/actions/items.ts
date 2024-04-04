@@ -59,6 +59,14 @@ export const updateItem = async(id: string, data: UpdateItem) => {
   }
 }
 
+export const deleteAll = async () => {
+  const items = await getItems()
+  items.forEach(async item => {
+    await deleteItem(item.id)
+  })
+  revalidatePath('/')
+}
+
 export const importData = async(items: NewItem[]) => {
   for (const item of items) {
     const data = await getItemByName(item.name)
