@@ -1,3 +1,9 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "b27d",
+      "name": "test2",
+      "bought": true
+    }
+  ]
 }

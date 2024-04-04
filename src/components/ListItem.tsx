@@ -53,7 +53,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
   }
 
   return (
-    <div className='flex justify-between m-2'>
+    <form action={handleEdit} className='flex justify-between m-2'>
       <div className="flex gap-2">
         <input type="checkbox" name="isChecked" id={item.name} checked={isChecked} onChange={toggleCheckbox} />
         <input
@@ -69,7 +69,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
         />
       </div>
       <div className="flex gap-2">
-        <button onClick={cancelEdit} hidden={item.name === itemName || isChecked}>
+        <button onClick={cancelEdit} type='button' hidden={item.name === itemName || isChecked}>
           <IoMdClose color='red' size={24} />
         </button>
         <button onClick={handleEdit} disabled={isChecked}>
@@ -77,7 +77,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
         </button>
         <FaRegTrashAlt color='red' size={24} onClick={handleDelete} />
       </div>
-    </div>
+    </form>
   )
 }
 
