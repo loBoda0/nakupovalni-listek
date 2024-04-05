@@ -16,6 +16,10 @@ export const getItemByName = async(name: string) => {
 }
 
 export const postItem = async(newItem: NewItem) => {
+  const isDupicate = await getItemByName(newItem.name)
+  if (isDupicate.length !== 0) {
+    return { dupicate: true }
+  }
   const response = await fetch('http://localhost:3001/items', {
     method: 'POST',
     headers: {
@@ -28,9 +32,7 @@ export const postItem = async(newItem: NewItem) => {
     throw new Error('Failed to add item')
   }
 
-  const data = await response.json()
   revalidatePath('/')
-  return await ShopItemSchema.parseAsync(data)
 }
 
 export const deleteItem = async(id: string) => {

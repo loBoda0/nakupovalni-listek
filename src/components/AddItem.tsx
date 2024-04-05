@@ -2,6 +2,7 @@
 
 import { postItem } from '@/actions/items'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { GoPlusCircle } from "react-icons/go"
 
 const AddItem = () => {
@@ -17,7 +18,11 @@ const AddItem = () => {
       bought: false
     }
 
-    postItem(newItem)
+    const response = await postItem(newItem)
+    if (response?.dupicate) {
+      toast.error('This item already exists');
+      
+    }
     setItemName('')
   }
 
