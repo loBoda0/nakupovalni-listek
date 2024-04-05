@@ -1,25 +1,25 @@
-import { ShopItem } from '@/schemas/ShopItem'
+import { ShopItem } from '@/schemas/GroceryItem'
 import React from 'react'
-import ListItem from './ListItem'
+import GroceryItem from './GroceryItem'
 import AddItem from './AddItem'
 import FileActions from './FileActions'
 import EmptyState from './EmptyState'
 
-interface ItemListProps {
+interface GroceryListProps {
   items: ShopItem[]
 }
 
-const ItemList: React.FC<ItemListProps> = ({ items }) => {
+const GroceryList: React.FC<GroceryListProps> = ({ items }) => {
   return (
-    <div className='bg-white rounded-md p-4 w-[412px] m-3'>
+    <div className='w-[412px] m-3'>
       <AddItem />
-      <div className="h-96 overflow-scroll">
+      <div className="bg-white rounded-md h-96 overflow-scroll">
       {
         items.length > 0 ? 
           <>
             {
               items.map(item => (
-                <ListItem key={item.id} item={item} />
+                <GroceryItem key={item.id} item={item} />
               ))
             }
           </>
@@ -31,4 +31,4 @@ const ItemList: React.FC<ItemListProps> = ({ items }) => {
   )
 }
 
-export default ItemList
+export default GroceryList

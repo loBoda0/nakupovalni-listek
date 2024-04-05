@@ -1,6 +1,6 @@
 'use server'
 
-import { ShopItemsSchema, ShopItemSchema, NewItem, UpdateItem } from "@/schemas/ShopItem"
+import { ShopItemsSchema, ShopItemSchema, NewItem, UpdateItem } from "@/schemas/GroceryItem"
 import { revalidatePath } from "next/cache"
 
 export const getItems = async() => {

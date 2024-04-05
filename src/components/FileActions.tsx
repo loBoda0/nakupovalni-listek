@@ -1,7 +1,7 @@
 'use client'
 
 import { deleteAll, getItems, importData } from '@/actions/items'
-import { NewItemSchema, ShopItem } from '@/schemas/ShopItem'
+import { NewItemSchema, ShopItem } from '@/schemas/GroceryItem'
 import React from 'react'
 import { MdFileUpload, MdFileDownload } from "react-icons/md"
 
@@ -58,19 +58,20 @@ const FileActions = () => {
   }
 
   return (
-    <div className='flex h-12'>
-      <button className="w-1/3 flex items-center justify-center" onClick={deleteAllItems}>Delete all</button>
-      <div className='w-1/3 flex items-center justify-center border-dashed border-2 m-1' onClick={exportData}>
-        <MdFileDownload size={48} />
-      </div>
-      <label className='w-1/3 flex items-center justify-center border-dashed border-2 m-1'>
+    <div className='flex bg-white rounded-md p-2 mt-4 gap-2'>
+      <button className="w-1/3 flex items-center justify-center bg-red-400 hover:bg-red-500 rounded-md" onClick={deleteAllItems}>Delete all</button>
+      <button className='w-1/3 flex items-center justify-center border-dashed border-2' onClick={exportData}>
+        Download <MdFileDownload size={24} />
+      </button>
+      <label className='w-1/3 flex items-center justify-center border-dashed border-2'>
+        Import
         <input 
           type='file' 
           accept='.json' 
           onChange={handleFileChange} 
           className='hidden'
         />
-        <MdFileUpload size={48} />
+        <MdFileUpload size={24} />
       </label>
     </div>
   )

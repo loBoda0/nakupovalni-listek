@@ -7,3 +7,12 @@ body,
 root {
   height: 100%;
 }
+
+input {
+  background: transparent;
+}
+
+input:focus {
+  background: transparent;
+  outline: none;
+}

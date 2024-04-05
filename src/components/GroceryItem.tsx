@@ -1,6 +1,6 @@
 'use client'
 
-import { ShopItem } from '@/schemas/ShopItem'
+import { ShopItem } from '@/schemas/GroceryItem'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { CiEdit } from "react-icons/ci"
@@ -8,11 +8,11 @@ import { deleteItem, updateItem } from '@/actions/items'
 import { IoMdClose } from "react-icons/io"
 import { cn } from '@/utils/cn'
 
-interface ListItemProps {
+interface GroceryItemProps {
   item: ShopItem
 }
 
-const ListItem: React.FC<ListItemProps> = ({ item }) => {
+const GroceryItem: React.FC<GroceryItemProps> = ({ item }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [itemName, setItemName] = useState(item.name)
   const [isChecked, setIsChecked] = useState(item.bought)
@@ -53,9 +53,9 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
   }
 
   return (
-    <form action={handleEdit} className='flex justify-between m-2'>
-      <div className="flex gap-2">
-        <input type="checkbox" name="isChecked" id={item.name} checked={isChecked} onChange={toggleCheckbox} />
+    <form action={handleEdit} className='flex justify-between m-1 p-3 rounded-md bg-slate-300'>
+      <div className="flex gap-2 items-center">
+        <input type="checkbox" name="isChecked" className='w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600' id={item.name} checked={isChecked} onChange={toggleCheckbox} />
         <input
           type="text"
           className={cn('w-full', isChecked && 'line-through text-gray-500')}
@@ -81,4 +81,4 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
   )
 }
 
-export default ListItem
+export default GroceryItem
