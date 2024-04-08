@@ -10,6 +10,7 @@ interface GroceryListProps {
 }
 
 const GroceryList: React.FC<GroceryListProps> = ({ items }) => {
+
   return (
     <div className='w-[412px] m-3'>
       <AddItem />

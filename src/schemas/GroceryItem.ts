@@ -22,3 +22,5 @@ export const UpdateItemSchema = z.object({
   name: z.string().optional(),
   bought: z.boolean().optional(),
 });
+
+export const NewItemsSchema = z.array(NewItemSchema)

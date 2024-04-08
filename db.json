@@ -1,3 +1,74 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "2389",
+      "name": "paradajz",
+      "bought": false
+    },
+    {
+      "id": "4edd",
+      "name": "hruske",
+      "bought": false
+    },
+    {
+      "id": "1087",
+      "name": "piskoti",
+      "bought": true
+    },
+    {
+      "id": "e90e",
+      "name": "kruh",
+      "bought": false
+    },
+    {
+      "id": "11ef",
+      "name": "salama",
+      "bought": false
+    },
+    {
+      "id": "ec36",
+      "name": "noz",
+      "bought": false
+    },
+    {
+      "id": "14e7",
+      "name": "skuta",
+      "bought": true
+    },
+    {
+      "id": "e138",
+      "name": "banane",
+      "bought": false
+    },
+    {
+      "id": "57f5",
+      "name": "mandarine",
+      "bought": false
+    },
+    {
+      "id": "3e60",
+      "name": "ingver",
+      "bought": false
+    },
+    {
+      "id": "5d04",
+      "name": "jabolčni sok",
+      "bought": true
+    },
+    {
+      "id": "6732",
+      "name": "peteršilj",
+      "bought": false
+    },
+    {
+      "id": "a25e",
+      "name": "seentest",
+      "bought": false
+    },
+    {
+      "id": "ce24",
+      "name": "Kalamari",
+      "bought": false
+    }
+  ]
 }

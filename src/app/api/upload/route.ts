@@ -1,12 +1,13 @@
 import { NextApiRequest } from "next"
-import fs from 'fs'
 import { NextRequest, NextResponse } from "next/server"
-import { importData } from "@/actions/items"
+import { getItems, importData } from "@/actions/items"
+import { NewItemsSchema } from "@/schemas/GroceryItem"
 
-export function GET(
+export async function GET(
   req: NextApiRequest,
 ) {
-  return Response.json({ message: 'Hello from Next.js!' })
+  const data = await getItems()
+  return Response.json({ items: data })
 }
 
 export async function POST(
@@ -14,19 +15,23 @@ export async function POST(
 ) {
   try {
     const formData = await req.formData()
-    const file = formData.get('file') as string | null
-
-    console.log(file)
+    const file = formData.get('file') as File | null
     
     if (!file) {
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
-
-    const data = fs.readFileSync(file, { encoding: 'utf8', flag: 'r' })
     
-    const groceries = JSON.parse(data)
+    if (file.type !== 'application/json') {
+      return NextResponse.json({ error: 'Only JSON files are allowed' }, { status: 500 })
+    }
 
-    importData(groceries)
+    const fileContents = await file.text();
+
+    const groceries = JSON.parse(fileContents)
+
+    const validatedGroceries = await NewItemsSchema.parseAsync(groceries)
+
+    importData(validatedGroceries)
     
     return NextResponse.json({ "message": "Data imported successfully."}, { status: 200 })
   } catch (error) {
