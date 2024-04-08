@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nakupovalni listek
 
-## Getting Started
+Navodila, po katerih je bila narejena aplikacija:
 
-First, run the development server:
+```
+Naslov: Kot član družine imam nakupovalni listek, ki ga polnijo vsi člani družine in s katerim lahko grem v trgovino.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Opis:
+- Potrebujem aplikacijo "nakupovalni listek", kjer lahko različni uporabniki dodajajo, urejajo in brišejo predmete, ki jih bo moral nekdo kasneje iskati v trgovino.
+- Tisti, ki gre v trgovino, mora imeti možnost odkljukati predmete (check/uncheck), ki jih je nabavil, kot bi prečrtal na nakupovalnem listku.
+- Prva verzija ima samo "en spisek” (one list for all users), ki ga vsi urejajo. Ne omogoča več nakupovalnih listkov.
+- Naj bo uporabniška izkušnja navdušila uporabnika.
+- Uporabnik lahko zbriše vse elemente.
+- Uporabnik lahko izvozi podatke v JSON datoteko in jo tudi uvozi. Prenesejo se vsa stanja (checked/unchecked, …). Pazi na konflikte pri uvažanju čez obstoječe podatke.
+- Uvoz/izvoz dela tudi preko CLI komande.
+
+Kazalniki/QA:
+* Dva različna uporabnika lahko vpišeta predmet na isti listek.
+* Vsak uporabnik vidi vse vpisano in stanje vpisanega.
+* En uporabnik pobriše predmet drugega uporabnika. Posledica se vidi pri drugem uporabniku.
+* En uporabnik odkljuka predmet kot "kupljen". Posledica se vidi pri drugem uporabniku.
+* En uporabnik izvozi podatke.
+* En uporabnik uvozi podatke. Isti podatki se osvežijo, se ne duplicirajo.
+
+Arhitektura, design, programski jezik, framework, ki ga boš uporabil, je tvoja izbira.
+Ker smo agilni, je pomembno, da izbereš takšna orodja, kjer boš dosegel cilj najhitreje in seveda najbolj kvalitetno.  Izdelek mora delovati v vseh scenarijih dnevne uporabe. Mora biti pregleden na ekranu telefona in na računalniku.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Zagon aplikacije z uporabo npm (frontend na portu 3000, backend na portu 3001):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm i
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# frontend
+npm run dev
 
-## Learn More
+# backend
+npm run serve
 
-To learn more about Next.js, take a look at the following resources:
+# frontend in backend
+npm run all
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Docker image:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+docker-compose up
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Primeri za CLI komande so v datoteki [CLI Commands](cli-commands.txt)
