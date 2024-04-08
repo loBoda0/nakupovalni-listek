@@ -1,11 +1,8 @@
-import { NextApiRequest } from "next"
 import { NextRequest, NextResponse } from "next/server"
 import { getItems, importData } from "@/actions/items"
 import { NewItemsSchema } from "@/schemas/GroceryItem"
 
-export async function GET(
-  req: NextApiRequest,
-) {
+export async function GET() {
   const data = await getItems()
   return Response.json({ items: data })
 }
