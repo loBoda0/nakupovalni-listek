@@ -26,6 +26,7 @@ Arhitektura, design, programski jezik, framework, ki ga boš uporabil, je tvoja 
 Ker smo agilni, je pomembno, da izbereš takšna orodja, kjer boš dosegel cilj najhitreje in seveda najbolj kvalitetno.  Izdelek mora delovati v vseh scenarijih dnevne uporabe. Mora biti pregleden na ekranu telefona in na računalniku.
 ```
 
+Aplikacija je narejena v nextjs-u, za backend pa se uporablja json-server.
 Zagon aplikacije z uporabo npm (frontend na portu 3000, backend na portu 3001):
 
 ```
