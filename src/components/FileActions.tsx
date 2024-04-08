@@ -1,7 +1,7 @@
 'use client'
 
 import { deleteAll, getItems, importData } from '@/actions/items'
-import { NewItemSchema, ShopItem } from '@/schemas/GroceryItem'
+import { NewItemSchema, Grocery } from '@/schemas/GroceryItem'
 import React from 'react'
 import { MdFileUpload, MdFileDownload } from "react-icons/md"
 
@@ -17,10 +17,10 @@ const FileActions = () => {
     reader.onload = async (e) => {
       try {
         const json = JSON.parse(e.target?.result as string)
-        if (Array.isArray(json) && json.every(isValidShopItem)) {
+        if (Array.isArray(json) && json.every(isValidGrocery)) {
           await importData(json)
         } else {
-          throw new Error('Invalid JSON format or ShopItem structure')
+          throw new Error('Invalid JSON format or Grocery structure')
         }
       } catch (error) {
         console.error('Error parsing JSON:', error)
@@ -36,7 +36,7 @@ const FileActions = () => {
     }
   }
 
-  const isValidShopItem = (item: any): item is ShopItem => {
+  const isValidGrocery = (item: any): item is Grocery => {
     try {
       return !!NewItemSchema.parse(item)
     } catch (error) {

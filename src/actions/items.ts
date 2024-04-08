@@ -1,18 +1,18 @@
 'use server'
 
-import { ShopItemsSchema, NewItem, UpdateItem } from "@/schemas/GroceryItem"
+import { GroceriesSchema, NewItem, UpdateItem } from "@/schemas/GroceryItem"
 import { revalidatePath } from "next/cache"
 
 export const getItems = async() => {
   const response = await fetch('http://localhost:3001/items', {  cache: 'no-cache' })
   const data = await response.json()
-  return await ShopItemsSchema.parseAsync(data)
+  return await GroceriesSchema.parseAsync(data)
 }
 
 export const getItemByName = async(name: string) => {
   const response = await fetch(`http://localhost:3001/items?name=${name}`, {  cache: 'no-cache' })
   const data = await response.json()
-  return await ShopItemsSchema.parseAsync(data)
+  return await GroceriesSchema.parseAsync(data)
 }
 
 export const postItem = async(newItem: NewItem) => {

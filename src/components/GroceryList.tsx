@@ -1,4 +1,4 @@
-import { ShopItem } from '@/schemas/GroceryItem'
+import { Grocery } from '@/schemas/GroceryItem'
 import React from 'react'
 import GroceryItem from './GroceryItem'
 import AddItem from './AddItem'
@@ -6,7 +6,7 @@ import FileActions from './FileActions'
 import EmptyState from './EmptyState'
 
 interface GroceryListProps {
-  items: ShopItem[]
+  items: Grocery[]
 }
 
 const GroceryList: React.FC<GroceryListProps> = ({ items }) => {

@@ -1,6 +1,6 @@
 'use client'
 
-import { ShopItem } from '@/schemas/GroceryItem'
+import { Grocery } from '@/schemas/GroceryItem'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { CiEdit } from "react-icons/ci"
@@ -9,7 +9,7 @@ import { IoMdClose } from "react-icons/io"
 import { cn } from '@/utils/cn'
 
 interface GroceryItemProps {
-  item: ShopItem
+  item: Grocery
 }
 
 const GroceryItem: React.FC<GroceryItemProps> = ({ item }) => {

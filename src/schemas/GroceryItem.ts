@@ -1,13 +1,13 @@
 import { z } from 'zod'
 
-export type ShopItem = z.infer<typeof ShopItemSchema>
-export const ShopItemSchema = z.object({
+export type Grocery = z.infer<typeof GrocerySchema>
+export const GrocerySchema = z.object({
   id: z.string(),
   name: z.string(),
   bought: z.boolean()
 })
 
-export const ShopItemsSchema = z.array(ShopItemSchema)
+export const GroceriesSchema = z.array(GrocerySchema)
 
 export type NewItem = z.infer<typeof NewItemSchema>
 
